@@ -1,6 +1,6 @@
 {
-  "usuario": "10771290",
-  "password": "25/01/2006",
+  "usuario": "11111",
+  "password": "xxxxxx",
   "ollama_url": "http://localhost:11434",
   "llm_model": "gemma3:4b",
   "llm_temperatura": 0.7,

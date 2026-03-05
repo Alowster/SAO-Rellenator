@@ -13,7 +13,8 @@ def main():
     app = QApplication(sys.argv)
     app.setApplicationName("SAÓ-Rellenator")
 
-    icon_path = Path(__file__).parent / "assets" / "icon.ico"
+    base = Path(getattr(sys, "_MEIPASS", Path(__file__).parent))
+    icon_path = base / "assets" / "icon.ico"
     if icon_path.exists():
         app.setWindowIcon(QIcon(str(icon_path)))
 
