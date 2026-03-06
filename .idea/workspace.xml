@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d348f80b-94df-45a0-8c01-ed966bf6ffc6" name="Changes" comment="Add .gitignore with common exclusions and update IDE workspace settings">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/dist/config.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/ia_widget.py" beforeDir="false" afterPath="$PROJECT_DIR$/ui/ia_widget.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,7 +16,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="28" />
+    <option name="cachedIndexableFilesCount" value="39" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
@@ -94,7 +96,9 @@
       <updated>1772619964305</updated>
       <workItem from="1772619965335" duration="15576000" />
       <workItem from="1772638263893" duration="657000" />
-      <workItem from="1772693756203" duration="1395000" />
+      <workItem from="1772693756203" duration="3542000" />
+      <workItem from="1772725362536" duration="648000" />
+      <workItem from="1772780411738" duration="3985000" />
     </task>
     <task id="LOCAL-00001" summary="Add initial project structure with main.py and IDE configuration files">
       <option name="closed" value="true" />
@@ -152,7 +156,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772638752509</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Add .gitignore with common exclusions and update IDE workspace settings">
+      <option name="closed" value="true" />
+      <created>1772696245378</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1772696245378</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -166,7 +178,7 @@
     <option name="LAST_COMMIT_MESSAGE" value="Add .gitignore with common exclusions and update IDE workspace settings" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/SAORellenator$main.coverage" NAME="main Coverage Results" MODIFIED="1772636441286" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SAORellenator$main.coverage" NAME="main Coverage Results" MODIFIED="1772781749759" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/SAORellenator$list.coverage" NAME="list Coverage Results" MODIFIED="1772622410558" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

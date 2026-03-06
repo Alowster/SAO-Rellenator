@@ -22,7 +22,7 @@ def main():
     try:
         config = load_config()
     except ConfigError:
-        config = AppConfig()  # valores por defecto si no existe aún
+        config = AppConfig()
 
     setup = SetupDialog(model=config.llm_model, ollama_url=config.ollama_url)
     setup.run_setup()

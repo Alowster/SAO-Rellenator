@@ -14,7 +14,7 @@ MAX_CHARS = 240
 
 
 class _GenerationWorker(QObject):
-    chunk = Signal(str)   # token a token
+    chunk = Signal(str)
     finished = Signal()
     error = Signal(str)
 
@@ -26,12 +26,35 @@ class _GenerationWorker(QObject):
     def run(self):
         try:
             import ollama
+            from datetime import date as _date
+            from core.foremp_reader import read_week_entries
+
             client = ollama.Client(host=self._config.ollama_url)
-            fecha_str = self._fecha.strftime("%d/%m/%Y") if self._fecha else __import__("datetime").date.today().strftime("%d/%m/%Y")
+            fecha = self._fecha or _date.today()
+            fecha_str = fecha.strftime("%d/%m/%Y")
+
+            # Leer entradas de la semana como contexto (falla silenciosamente)
+            context_block = ""
+            try:
+                week_entries = read_week_entries(self._config, fecha)
+                if week_entries:
+                    lines = "\n".join(
+                        f"- {d.strftime('%A %d/%m/%Y')}: \"{desc}\""
+                        for d, desc in sorted(week_entries.items())
+                    )
+                    context_block = (
+                        f"\nDescripciones ya escritas esta semana:\n{lines}\n"
+                        "Genera algo diferente, variado y coherente con lo anterior.\n"
+                    )
+            except Exception:
+                pass
+
             prompt = (
-                f"Genera la descripción del diario de prácticas para el día {fecha_str}. "
+                f"Genera la descripción del diario de prácticas para el día {fecha_str}."
+                f"{context_block}"
                 "La respuesta no debe superar 240 caracteres."
             )
+
             for part in client.generate(
                 model=self._config.llm_model,
                 prompt=prompt,
@@ -47,7 +70,7 @@ class _GenerationWorker(QObject):
 
 
 class IAWidget(QWidget):
-    text_ready = Signal(str, bool)  # texto, válido (<=240)
+    text_ready = Signal(str, bool)
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -97,7 +120,7 @@ class IAWidget(QWidget):
             return
 
         self.generate_btn.setEnabled(False)
-        self.status_label.setText("Generando...")
+        self.status_label.setText("Leyendo semana...")
 
         self._worker = _GenerationWorker(self._config, self._fecha)
         self._thread = QThread()
@@ -107,6 +130,7 @@ class IAWidget(QWidget):
         self._worker.finished.connect(self._on_generation_done)
         self._worker.error.connect(self._on_generation_error)
         self._thread.started.connect(self._worker.run)
+        self._worker.chunk.connect(lambda _: self.status_label.setText("Generando..."))
         self._worker.finished.connect(self._thread.quit)
         self._worker.error.connect(self._thread.quit)
         self._thread.finished.connect(self._thread.deleteLater)
@@ -132,7 +156,6 @@ class IAWidget(QWidget):
         text = self.result_edit.toPlainText()
         count = len(text)
         valid = count <= MAX_CHARS
-
         self.counter_label.setText(f"{count} / {MAX_CHARS}")
         self.counter_label.setStyleSheet("" if valid else "color: red;")
         self.text_ready.emit(text, valid)
